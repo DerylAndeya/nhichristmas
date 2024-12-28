@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Nhi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #bc0000, #dbd6d8, #bc0000);
+            background-size: 300% 300%;
+            animation: bg-animation 6s infinite;
+            overflow: hidden;
+            position: relative;
+            flex-direction: column;
+        }
+
+        @keyframes bg-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .floating-emojis, .floating-images {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .emoji {
+            position: absolute;
+            font-size: 2rem;
+            top: calc(100% * var(--y));
+            left: calc(100% * var(--x));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            width: 90vw;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .title {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            color: #ca0b0b;
+            text-shadow: 1px 1px #ffffff;
+            line-height: 1.1;
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            max-width: 95vw;
+            height: auto;
+            background: #960808;
+            border: 4px solid #ca0b0b;
+            border-radius: 10px;
+            box-shadow: 3px 3px 10px rgba(0,0,0,.3);
+            overflow: hidden;
+            cursor: pointer;
+            margin-bottom: 3rem;
+            aspect-ratio: 16/9;
+        }
+
+        .flap {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 50%;
+            background: #ca0b0b;
+            border-bottom: 3px solid #d3d3d3;
+            transform-origin: top;
+            transition: transform 2.7s ease-in-out;
+            z-index: 2;
+        }
+
+        .flap.open {
+            transform: rotateX(180deg);
+        }
+
+        .letter {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 2s ease-in-out;
+            z-index: 1;
+            transform: translateY(100%);
+            overflow-y: auto;
+        }
+
+        .letter.show {
+            transform: translateY(0);
+        }
+
+        .letter p {
+            font-size: 0.85rem;
+            line-height: 1.2;
+            color: #444;
+            margin-bottom: 0.5rem;
+        }
+
+        .letter p:first-child {
+            font-weight: bold;
+            color: #ca0b0b;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            background-color: #ca0b0b;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .close-btn:hover {
+            background-color: #ca0b0b;
+            transform: scale(1.1);
+        }
+
+        /* Media Queries for smaller screens */
+        @media screen and (max-width: 768px) {
+            .envelope {
+                aspect-ratio: 4/3;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .envelope {
+                aspect-ratio: 1/1;
+            }
+            .title {
+                font-size: 1.2rem;
+                margin-bottom: 0.3rem;
+            }
+        }
+        @media screen and (max-width: 375px) {
+            .title {
+                font-size: 1rem;
+                margin-bottom: 0.3rem;
+            }
+        }
+        
+
+    </style>
+</head>
+<body>
+    <p>&nbsp</p>
+    <p>&nbsp</p>
+    <p>&nbsp</p>
+     <div class="floating-emojis"></div>
+    <div class="container">
+        
+        <h1 class="title">HELLO NHI</h1>
+        <h2 class="title">CLICK TO OPEN THIS LETTER</h2>
+        <div class="envelope">
+            <div class="flap"></div>
+            <div class="letter">
+                <button class="close-btn">Close Letter</button>
+                <p><strong>To: Pham Yen Nhi </strong></p>
+                <p>&nbsp</p>   
+                <p>merry christmas nhi!!!! i hope u have a wonderful christmas this year. i hope everything will go along under gods plan.</p><p>&nbsp</p>
+                <p>thank u for being my friend, for being my everything that can help me go through everything. i know i sometimes being like an annoying lad and im really sorry huhu</p>
+            <p>&nbsp</p>
+            <p>(P.S: this is not a template btw, this is a real website i made for u lolol)</p>
+<p><strong>Sincerely, Deryl</strong></p>
+            </div>
+            
+        </div>
+        
+    </div>
+    <script>
+        const emojiContainer = document.querySelector('.floating-emojis');
+        const imageContainer = document.querySelector('.floating-images');
+        const emojis = ['❄️', '🎅', '❄️', '🌟', '☃️', '🎄','🎁',];
+        const minSpacing = 10; // Minimum spacing between emojis in percentage of screen size
+        const positions = [];
+
+        function getRandomPosition() {
+            let x, y, isTooClose;
+            do {
+                x = Math.random();
+                y = Math.random();
+                isTooClose = positions.some(pos => {
+                    const dx = (pos.x - x) * 100;
+                    const dy = (pos.y - y) * 100;
+                    return Math.sqrt(dx * dx + dy * dy) < minSpacing;
+                });
+            } while (isTooClose);
+            positions.push({ x, y });
+            return { x, y };
+        }
+        for (let i = 0; i < 65; i++) {
+            const emoji = document.createElement('div');
+            const { x, y } = getRandomPosition();
+            emoji.classList.add('emoji');
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.setProperty('--x', x);
+            emoji.style.setProperty('--y', y);
+            emojiContainer.appendChild(emoji);
+        }
+
+        
+        const flap = document.querySelector('.flap');
+        const letter = document.querySelector('.letter');
+        const closeButton = document.querySelector('.close-btn');
+
+
+        flap.addEventListener('click', () => {
+            flap.classList.add('open'); 
+            letter.classList.add('show'); 
+        });
+
+        closeButton.addEventListener('click', (event) => {
+            event.stopPropagation(); 
+            flap.classList.remove('open'); 
+            letter.classList.remove('show'); 
+        });
+        
+    </script>
+</body>
+</html>
